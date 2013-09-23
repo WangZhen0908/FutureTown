@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity" >
+
+    <TabHost 
+	    android:id="@android:id/tabhost"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_alignParentLeft="true"
+	    android:layout_centerVertical="true" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+            
+            <fragment android:name="com.vvage.futuretown.fragment.HomeFragment"
+                android:id="@+id/tab_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            
+            <fragment android:name="com.vvage.futuretown.fragment.MessageFragment"
+                android:id="@+id/tab_message"             
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            
+            <fragment android:name="com.vvage.futuretown.fragment.FavorFragment"
+                android:id="@+id/tab_favor"             
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            
+            <fragment android:name="com.vvage.futuretown.fragment.BonusFragment"
+                android:id="@+id/tab_bonus"             
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            
+            <fragment android:name="com.vvage.futuretown.fragment.UserFragment"
+                android:id="@+id/tab_user"             
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+       </FrameLayout>
+       <TabWidget
+            android:id="@android:id/tabs"
+            android:background="@drawable/tab_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </TabWidget>
+    </LinearLayout>
+</TabHost>
+
+</RelativeLayout>

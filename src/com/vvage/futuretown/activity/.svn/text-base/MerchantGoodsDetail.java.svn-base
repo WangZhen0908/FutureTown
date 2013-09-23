@@ -1,0 +1,150 @@
+package com.vvage.futuretown.activity;
+
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.GestureDetector.OnGestureListener;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.Gallery;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
+
+import com.vvage.futuretown.R;
+import com.vvage.futuretown.adapter.ImageAdapter;
+import com.vvage.futuretown.model.Image;
+
+public class MerchantGoodsDetail extends Activity implements OnGestureListener {
+
+	private ViewFlipper mFlipper;
+	private GestureDetector mDetector;
+
+	private TextView mMerchantGoodsName;
+	private TextView mMerchantGoodsPrice;
+	private Button mAddCart;
+	private TextView mDial;
+	private TextView mMerchantGoodsDetail;
+
+	private View addImageView(int id) {
+		ImageView iv = new ImageView(this);
+		iv.setImageResource(id);
+		return iv;
+	}
+
+	@Override
+	public boolean onDown(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+			float velocityY) {
+		// TODO Auto-generated method stub
+		if (e1.getX() - e2.getX() > 120) {
+			mFlipper.setInAnimation(AnimationUtils.loadAnimation(this,
+					R.anim.push_left_in));
+			mFlipper.setOutAnimation(AnimationUtils.loadAnimation(this,
+					R.anim.push_left_out));
+			mFlipper.showNext();
+			return true;
+		} else if (e1.getX() - e2.getX() < -120) {
+			mFlipper.setInAnimation(AnimationUtils.loadAnimation(this,
+					R.anim.push_right_in));
+			mFlipper.setOutAnimation(AnimationUtils.loadAnimation(this,
+					R.anim.push_right_out));
+			mFlipper.showPrevious();
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void onLongPress(MotionEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
+			float distanceY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void onShowPress(MotionEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean onSingleTapUp(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		// TODO Auto-generated method stub
+		return mDetector.onTouchEvent(event);
+	}
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+		setContentView(R.layout.merchantgoogsdetail);
+		mDetector = new GestureDetector(this);
+
+		mMerchantGoodsName = (TextView) findViewById(R.id.id_merchant_goods_detail_name_text);
+		mMerchantGoodsName.setText("大城小铺2012");
+		mMerchantGoodsPrice = (TextView) findViewById(R.id.id_id_merchant_goods_detail_price);
+		mMerchantGoodsPrice.setText("¥ 179");
+		mMerchantGoodsDetail = (TextView) findViewById(R.id.id_merchant_goods_detail_detail_text);
+		mMerchantGoodsDetail
+				.setText("甜美: 日系组合形式: 单件裙长: 短裙(76-90厘米)款式: 其他款式袖长: 短袖领型: 翻领/POLO领袖型: 泡泡袖腰型: 高腰衣门襟: 套头裙型: 大摆型图案: 花色 流行元素/工艺: 荷叶边品牌: Cici－Shop材质: 其他主成份含量: 51%-70%主材质: 棉适用人群: 18-24岁年份季节: 2013夏季颜色分类: 浅绿色底复古花料尺码: S M L");
+		
+		mAddCart = (Button) findViewById(R.id.id_merchant_goods_detail_addtocart_btn);
+		mAddCart.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(MerchantGoodsDetail.this, "调用购物车接口",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		mDial = (TextView)findViewById(R.id.id_merchant_goods_detail_dail_btn);
+		mDial.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Toast.makeText(MerchantGoodsDetail.this, "调用拨号键盘界面",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+
+		mFlipper = (ViewFlipper)findViewById(R.id.id_merchant_goods_detail_googs_photoshow_viewflipper);
+		mFlipper.addView(addImageView(R.drawable.ceshi_tu_01));
+		mFlipper.addView(addImageView(R.drawable.ceshi_tu_02));
+		mFlipper.addView(addImageView(R.drawable.ceshi_tu_01));
+		mFlipper.addView(addImageView(R.drawable.ceshi_tu_02));
+	}
+
+}

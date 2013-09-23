@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+     >
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/header_bg" >
+
+        <Button
+            android:id="@+id/sh_back_btn"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/pai_deng"
+            android:gravity="center"
+            android:text="返回"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="商品详情"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/sh_deng_btn"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/pai_deng"
+            android:gravity="center"
+            android:text="登录"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+    
+    <ScrollView 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        
+        >
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        
+        >
+    
+    
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+        
+       <ImageView
+           android:id="@+id/sh_im"
+           android:layout_width="150dp"
+           android:layout_height="150dp" />
+        
+        <TextView 
+            android:id="@+id/sh_jingying"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" 
+              android:layout_toRightOf="@id/sh_im"
+             />
+        
+        <TextView 
+            android:id="@+id/sh_bianhao"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+              android:layout_below="@id/sh_jingying"
+               android:layout_toRightOf="@id/sh_im"
+              />
+        
+       <Button
+            android:id="@+id/sh_chouBtn"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/sh_bianhao"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/sh_im"
+            android:background="@drawable/shanchu_goods"
+            android:text="拨电话"
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+           
+             />
+          <Button
+            android:id="@+id/sj_cang"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+             android:layout_marginLeft="10dp"
+            android:background="@drawable/chou_cang"
+            android:layout_below="@id/sh_bianhao"
+              android:layout_toRightOf="@id/sh_chouBtn"
+                android:layout_marginTop="10dp"
+            />
+        
+        
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/shang_bg"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/sj_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/per"
+           
+             />
+
+        <GridView
+            android:id="@+id/sh_gv"
+            android:layout_width="270dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:horizontalSpacing="10dp"
+            android:numColumns="4"
+              android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+             >
+        </GridView>
+
+        <ImageButton
+            android:id="@+id/sj_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/next1"
+                
+             />
+    </LinearLayout>
+    
+    <ListView 
+        android:id="@+id/sh_Lv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        
+        ></ListView>
+    
+    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

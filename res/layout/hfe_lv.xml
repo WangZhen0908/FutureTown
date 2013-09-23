@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/hf_lv_user"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="dsfsfdsf" />
+
+        <TextView
+            android:id="@+id/hf_lv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="dsfsfdsf" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/hf_lv_add"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/hf_lv_im"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/hf_lv_goodsname"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/hf_lv_im" />
+
+        <TextView
+            android:id="@+id/hf_lv_price"
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"
+            android:layout_below="@id/hf_lv_goodsname"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/hf_lv_im" />
+
+        <Button
+            android:id="@+id/hf_lv_btnshan"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/hf_lv_price"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/hf_lv_im"
+            android:background="@drawable/shanchu_goods"
+            android:text="拨打电话"
+            android:textColor="@android:color/white"
+            android:textSize="15dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+       android:background="@drawable/yuan_bg"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" 
+                 android:layout_marginLeft="5dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="回复一口价:" />
+
+                <TextView
+                    android:id="@+id/hf_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#ff0000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="剩余时间 :" />
+
+                <TextView
+                    android:id="@+id/hf_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#ff0000" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/hf_lv_fuyan"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+          
+            android:layout_marginTop="5dp"
+            android:background="@null"
+            android:gravity="top"
+            android:hint="附言：这件商品真真好呀，长方形浅底木条编制的粗篮"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+</LinearLayout>

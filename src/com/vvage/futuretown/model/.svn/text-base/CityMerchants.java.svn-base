@@ -1,0 +1,23 @@
+package com.vvage.futuretown.model;
+
+import android.util.Log;
+
+import com.vvage.futuretown.Global;
+import com.vvage.futuretown.network.Http.ErrorMsg;
+
+public class ObatinCityMsg extends BaseJsonReader {
+
+	@Override
+	public String getUrl() {
+		// TODO Auto-generated method stub
+		return Global.URL+"mod=index_api&code=City";
+	}
+
+	@Override
+	public void read(String str) throws ErrorMsg {
+		// TODO Auto-generated method stub
+//		super.read(str);
+		Log.d("Home", str);
+	}
+
+}

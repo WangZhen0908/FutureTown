@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    
+    >
+    <ImageView
+        android:id="@+id/sh_tu"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/bg" />
+    <TextView 
+        android:id="@+id/sh_pinming"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+       android:layout_toRightOf="@id/sh_tu"
+       android:layout_marginLeft="10dp"
+        />
+    <TextView 
+        android:id="@+id/sh_bianhao"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+       android:layout_toRightOf="@id/sh_tu"
+       android:layout_below="@id/sh_pinming"
+       android:layout_marginLeft="10dp"
+        />
+     <TextView 
+        android:id="@+id/sh_xiangqing"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+       android:layout_toRightOf="@id/sh_tu"
+       android:layout_below="@id/sh_bianhao"
+       android:layout_marginLeft="10dp"
+        />
+    <Button 
+        android:id="@+id/sh_cang"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+       android:layout_toRightOf="@id/sh_tu"
+       android:layout_below="@id/sh_xiangqing"
+       android:layout_marginLeft="10dp"
+       android:background="@drawable/choujiang_btn"
+       android:text="收藏"
+         android:textColor="@android:color/white"
+          android:textSize="15sp"
+        />
+    
+    
+    
+
+</RelativeLayout>
+</LinearLayout>

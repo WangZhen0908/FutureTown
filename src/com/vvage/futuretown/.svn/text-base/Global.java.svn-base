@@ -1,0 +1,330 @@
+package com.vvage.futuretown;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
+import android.util.DisplayMetrics;
+
+public class Global {
+	public static final String VERSION = "furturetown_1_0";
+	
+	public static final String URL = "http://www.vvage.com/?";
+	
+	// ---------------------------------------依赖设备
+		public static int HEIGHT_SCREEN;
+		public static int WIDTH_SCREEN;
+		
+	public static DisplayMetrics metric;
+	
+	public static int TEXT_SIZE_LV1 = 23;// 一级字号（标题）
+	public static int TEXT_SIZE_LV2 = 18;// 二级字号（可已跳转到二级页面选项的文字，如我的空间中“我的消息”选项）
+	public static int TEXT_SIZE_LV3 = 15;// 三级字号（正文，说明类文字）
+	public static int TEXT_SIZE_LV4 = 13;// 四级字号（补充类文字）
+	public static int TEXT_SIZE_LV5 = 11;// 五级字号（更小号）
+	public static int TEXT_SIZE_LV6 = 9;// 六级字号（更小号）
+		
+	/**
+	 * 内容与边距的距离(全局)
+	 */
+	public static int PADDING_GLOBAL = WIDTH_SCREEN / 25;
+	
+	
+	public static void initResource(Context activity) {
+//		if (getInitResourceResult()) {
+//			return;
+//		}
+		metric = activity.getResources().getDisplayMetrics();
+		TEXT_SIZE_LV1 = 23;// 一级字号（标题）
+		TEXT_SIZE_LV2 = 20;// 二级字号（可已跳转到二级页面选项的文字）
+		TEXT_SIZE_LV3 = 15;// 三级字号（正文，说明类文字）
+		TEXT_SIZE_LV4 = 13;// 四级字号（补充类文字）
+		TEXT_SIZE_LV5 = 11;// 五级字号（更小号）
+		TEXT_SIZE_LV6 = 9;// 六级字号（更小号）
+		if (metric.widthPixels > metric.heightPixels) {
+			HEIGHT_SCREEN = metric.widthPixels;
+			WIDTH_SCREEN = metric.heightPixels;
+		} else {
+			HEIGHT_SCREEN = metric.heightPixels;
+			WIDTH_SCREEN = metric.widthPixels;
+		}
+
+		PADDING_GLOBAL = WIDTH_SCREEN / 25;
+	}
+	
+	 /** 
+     * 将px值转换为dip或dp值，保证尺寸大小不变 
+     *  
+     * @param pxValue 
+     * @param scale 
+     *            （DisplayMetrics类中属性density） 
+     * @return 
+     */  
+    public static int px2dip(Context context, float pxValue) {  
+        final float scale = context.getResources().getDisplayMetrics().density;  
+        return (int) (pxValue / scale + 0.5f);  
+    }  
+  
+    /** 
+     * 将dip或dp值转换为px值，保证尺寸大小不变 
+     *  
+     * @param dipValue 
+     * @param scale 
+     *            （DisplayMetrics类中属性density） 
+     * @return 
+     */  
+    public static int dip2px(Context context, float dipValue) {  
+        final float scale = context.getResources().getDisplayMetrics().density;  
+        return (int) (dipValue * scale + 0.5f);  
+    }  
+  
+    /** 
+     * 将px值转换为sp值，保证文字大小不变 
+     *  
+     * @param pxValue 
+     * @param fontScale 
+     *            （DisplayMetrics类中属性scaledDensity） 
+     * @return 
+     */  
+    public static int px2sp(Context context, float pxValue) {  
+        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;  
+        return (int) (pxValue / fontScale + 0.5f);  
+    }  
+  
+    /** 
+     * 将sp值转换为px值，保证文字大小不变 
+     *  
+     * @param spValue 
+     * @param fontScale 
+     *            （DisplayMetrics类中属性scaledDensity） 
+     * @return 
+     */  
+    public static int sp2px(Context context, float spValue) {  
+        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;  
+        return (int) (spValue * fontScale + 0.5f);  
+    }  
+	
+	
+		
+		/**
+		 * 构造点击背景效果 -- Drawable
+		 * 
+		 * @param activity
+		 * @param normal
+		 * @param pressed
+		 * @param focused
+		 * @param unable
+		 * @return
+		 */
+	public static StateListDrawable newSelectorFromDrawable(Activity activity,
+			Drawable normal, Drawable pressed, Drawable focused, Drawable unable) {
+		StateListDrawable bg = new StateListDrawable();
+
+		// View.PRESSED_ENABLED_STATE_SET
+		bg.addState(new int[] { android.R.attr.state_pressed,
+				android.R.attr.state_enabled }, pressed);
+		// View.ENABLED_FOCUSED_STATE_SET
+		bg.addState(new int[] { android.R.attr.state_enabled,
+				android.R.attr.state_focused }, focused);
+		// View.ENABLED_STATE_SET
+		bg.addState(new int[] { android.R.attr.state_enabled }, normal);
+		// View.FOCUSED_STATE_SET
+		bg.addState(new int[] { android.R.attr.state_focused }, focused);
+		// View.WINDOW_FOCUSED_STATE_SET
+		bg.addState(new int[] { android.R.attr.state_window_focused }, unable);
+		// View.EMPTY_STATE_SET
+		bg.addState(new int[] {}, normal);
+		return bg;
+	}
+	
+	/**
+	 * 构造点击背景效果 -- Resource
+	 * 
+	 * @param activity
+	 * @param idNormal
+	 * @param idPressed
+	 * @param idFocused
+	 * @param idUnable
+	 * @return
+	 */
+	public static StateListDrawable newSelectorFromRes(Context c,
+			int idNormal, int idPressed, int idFocused, int idUnable) {
+		StateListDrawable bg = new StateListDrawable();
+		Drawable normal = idNormal == -1 ? null : c.getResources()
+				.getDrawable(idNormal);
+		Drawable pressed = idPressed == -1 ? null : c.getResources()
+				.getDrawable(idPressed);
+		Drawable focused = idFocused == -1 ? null : c.getResources()
+				.getDrawable(idFocused);
+		Drawable unable = idUnable == -1 ? null : c.getResources()
+				.getDrawable(idUnable);
+
+		// View.PRESSED_ENABLED_STATE_SET
+		bg.addState(new int[] { android.R.attr.state_pressed,
+				android.R.attr.state_enabled }, pressed);
+		// View.ENABLED_FOCUSED_STATE_SET
+		bg.addState(new int[] { android.R.attr.state_enabled,
+				android.R.attr.state_focused }, focused);
+		// View.ENABLED_STATE_SET
+		bg.addState(new int[] { android.R.attr.state_enabled }, normal);
+		// View.FOCUSED_STATE_SET
+		bg.addState(new int[] { android.R.attr.state_focused }, focused);
+		// View.WINDOW_FOCUSED_STATE_SET
+		bg.addState(new int[] { android.R.attr.state_window_focused }, unable);
+		// View.EMPTY_STATE_SET
+		bg.addState(new int[] {}, normal);
+		return bg;
+	}
+	
+	/**
+	 * 网络连接检测
+	 * 
+	 * @return
+	 */
+	public static boolean netCheck(Context context) {
+		ConnectivityManager manager = (ConnectivityManager) context
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkinfo = manager.getActiveNetworkInfo();
+		if (networkinfo != null && networkinfo.isAvailable()) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static void call(Activity activity, String phoneNumber){
+		if(phoneNumber!=null && !phoneNumber.equals("")){
+			phoneNumber.trim();
+			Intent intent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:"+phoneNumber));
+			//ACTION_DIAL进入拨号界面
+			activity.startActivity(intent);
+		}
+	}
+	
+	/**
+	 * encode
+	 * 
+	 * coverts a byte array to a string populated with base64 digits. It steps
+	 * through the byte array calling a helper methode for each block of three
+	 * input bytes
+	 * 
+	 * @param raw
+	 *            The byte array to encode
+	 * @return A string in base64 encoding
+	 */
+	public static String Base64Encode(byte[] raw) {
+		StringBuffer encoded = new StringBuffer();
+		for (int i = 0; i < raw.length; i += 3) {
+			encoded.append(Base64EncodeBlock(raw, i));
+		}
+		return encoded.toString();
+	}
+	
+	/*
+	 * encodeBlock
+	 * 
+	 * creates 4 base64 digits from three bytes of input data. we use an
+	 * integer, block, to hold the 24 bits of input data.
+	 * 
+	 * @return An array of 4 characters
+	 */
+	protected static char[] Base64EncodeBlock(byte[] raw, int offset) {
+		int block = 0;
+		// how much space left in input byte array
+		int slack = raw.length - offset - 1;
+		// if there are fewer than 3 bytes in this block, calculate end
+		int end = (slack >= 2) ? 2 : slack;
+		// convert signed quantities into unsigned
+		for (int i = 0; i <= end; i++) {
+			byte b = raw[offset + i];
+			int neuter = (b < 0) ? b + 256 : b;
+			block += neuter << (8 * (2 - i));
+		}
+
+		// extract the base64 digets, which are six bit quantities.
+		char[] base64 = new char[4];
+		for (int i = 0; i < 4; i++) {
+			int sixbit = (block >>> (6 * (3 - i))) & 0x3f;
+			base64[i] = Base64GetChar(sixbit);
+		}
+		// pad return block if needed
+		if (slack < 1)
+			base64[2] = '=';
+		if (slack < 2)
+			base64[3] = '=';
+		// always returns an array of 4 characters
+		return base64;
+	}
+
+	/*
+	 * getChar
+	 * 
+	 * encapsulates the translation from six bit quantity to base64 digit
+	 */
+	protected static char Base64GetChar(int sixBit) {
+		if (sixBit >= 0 && sixBit <= 25)
+			return (char) ('A' + sixBit);
+		if (sixBit >= 26 && sixBit <= 51)
+			return (char) ('a' + (sixBit - 26));
+		if (sixBit >= 52 && sixBit <= 61)
+			return (char) ('0' + (sixBit - 52));
+		if (sixBit == 62)
+			return '+';
+		if (sixBit == 63)
+			return '/';
+		return '?';
+	}
+
+	/**
+	 * decode convert a base64 string into an array of bytes.
+	 * 
+	 * @param base64
+	 *            A String of base64 digits to decode.
+	 * @return A byte array containing the decoded value of the base64 input
+	 *         string
+	 */
+	public static byte[] Base64Decode(String base64) {
+		// how many padding digits?
+		int pad = 0;
+		for (int i = base64.length() - 1; base64.charAt(i) == '='; i--)
+			pad++;
+		// we know know the lenght of the target byte array.
+		int length = base64.length() * 6 / 8 - pad;
+		byte[] raw = new byte[length];
+		int rawIndex = 0;
+		// loop through the base64 value. A correctly formed
+		// base64 string always has a multiple of 4 characters.
+		for (int i = 0; i < base64.length(); i += 4) {
+			int block = (Base64GetValue(base64.charAt(i)) << 18) + (Base64GetValue(base64.charAt(i + 1)) << 12)
+					+ (Base64GetValue(base64.charAt(i + 2)) << 6) + (Base64GetValue(base64.charAt(i + 3)));
+			// based on the block, the byte array is filled with the
+			// appropriate 8 bit values
+			for (int j = 0; j < 3 && rawIndex + j < raw.length; j++)
+				raw[rawIndex + j] = (byte) ((block >> (8 * (2 - j))) & 0xff);
+			rawIndex += 3;
+		}
+		return raw;
+	}
+
+	/*
+	 * getValue translates from base64 digits to their 6 bit value
+	 */
+	protected static int Base64GetValue(char c) {
+		if (c >= 'A' && c <= 'Z')
+			return c - 'A';
+		if (c >= 'a' && c <= 'z')
+			return c - 'a' + 26;
+		if (c >= '0' && c <= '9')
+			return c - '0' + 52;
+		if (c == '+')
+			return 62;
+		if (c == '/')
+			return 63;
+		if (c == '=')
+			return 0;
+		return -1;
+	}
+}

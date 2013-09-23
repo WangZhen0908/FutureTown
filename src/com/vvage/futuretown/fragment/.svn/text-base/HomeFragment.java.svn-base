@@ -1,0 +1,555 @@
+package com.vvage.futuretown.fragment;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import kankan.wheel.widget.OnWheelChangedListener;
+import kankan.wheel.widget.WheelView;
+import kankan.wheel.widget.adapters.ArrayWheelAdapter;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.BMapManager;
+import com.baidu.mapapi.map.ItemizedOverlay;
+import com.baidu.mapapi.map.LocationData;
+import com.baidu.mapapi.map.MapController;
+import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.OverlayItem;
+import com.baidu.mapapi.map.PopupClickListener;
+import com.baidu.mapapi.map.PopupOverlay;
+import com.baidu.platform.comapi.basestruct.GeoPoint;
+import com.vvage.futuretown.BaseFragment;
+import com.vvage.futuretown.R;
+import com.vvage.futuretown.activity.Merchant;
+import com.vvage.futuretown.model.ObatinCityMsg;
+import com.vvage.futuretown.network.Http;
+import com.vvage.futuretown.network.Http.ErrorMsg;
+
+public class HomeFragment extends BaseFragment {
+	private static final String[] spinner_text = { "商家", "商品", "商品2", "商品3",
+			"商品4" };
+	private ArrayAdapter<String> adapter;
+	// private Spinner spinner;
+	final String shop_name[] = new String[] { "中软国际", "北方时空", "超市发", "枫蓝国际",
+			"凯德MALL" };
+
+	
+	
+	// baidu map params
+	private BMapManager mBMapMan = null;
+	public static final String strKey = "6C34DDDC2C51ECA281BDE40EB684831F12AC94B8";
+
+	/**
+	 *  MapView 是地图主控件
+	 */
+	private MapView mMapView = null;
+	/**
+	 *  用MapController完成地图控制 
+	 */
+	private MapController mMapController = null;
+	private MerchantOverlay mOverlay;
+	private PopupOverlay mPop = null;
+	private ArrayList<OverlayItem>  mItems = null; 
+	private OverlayItem mCurItem = null;
+
+
+	private View mPopCustomView;
+	private TextView mMerchantName;
+	private TextView mMerchantHot;
+	private TextView mMerchantGoodsCount;
+	private TextView mMerchantPhone;
+	private ImageView mMerchantImage;
+
+	// 定位相关 初始化定位自己的位置
+	private LocationClient mLocClient = null;
+	private LocationData mLocData = null;
+	private MyLocationListener myListener = new MyLocationListener();
+//	boolean isRequest = false;//是否手动触发请求定位
+	boolean isFirstLoc = true;//是否首次定位
+	boolean isLocationClientStop = false;
+
+	private TextView mSelectorTextView;
+
+	private WheelView picker;
+
+	// test data
+	/**
+	 * overlay 位置坐标
+	 */
+	double mLon1 = 116.400244;
+	double mLat1 = 39.963175;
+	double mLon2 = 116.369199;
+	double mLat2 = 39.942821;
+	double mLon3 = 116.425541;
+	double mLat3 = 39.939723;
+	double mLon4 = 116.401394;
+	double mLat4 = 39.906965;
+	double mLon5 = 116.402096;
+	double mLat5 = 39.942057;
+	private double lonlats[][] = { { mLon1, mLat1 }, { mLon2, mLat2 },
+			{ mLon3, mLat3 }, { mLon4, mLat4 }, { mLon5, mLat5 } };
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		mBMapMan = new BMapManager(getActivity());
+		mBMapMan.init(strKey, null);
+		
+		try {
+			Http.getInstance().HttpRequest(getActivity(), new ObatinCityMsg());
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		} catch (ErrorMsg e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState)  {
+		View view = inflater.inflate(R.layout.fragment_home, null);
+		initBDMapView(view);
+		initView(view);
+		initData();
+		return view;
+	}
+	
+	
+	private void obatinLoc() {
+		//定位初始化
+		mLocClient = new LocationClient(getActivity()); // 声明LocationClient类
+		mLocData = new LocationData();
+		mLocClient.registerLocationListener(myListener); // 注册监听函数
+		
+		LocationClientOption option = new LocationClientOption();
+		option.setOpenGps(true);//打开GPS
+		option.setAddrType("all");// 返回的定位结果包含地址信息
+		option.setCoorType("bd09ll");// 返回的定位结果是百度经纬度,默认值gcj02
+		option.setScanSpan(5000);// 设置发起定位请求的间隔时间为5000ms
+		option.disableCache(true);// 禁止启用缓存定位
+		option.setPoiNumber(5); // 最多返回POI个数
+		option.setPoiDistance(1000); // poi查询距离
+		option.setPoiExtraInfo(true); // 是否需要POI的电话和地址等详细信息
+		mLocClient.setLocOption(option);
+		mLocClient.start();
+		
+		if (mLocClient != null && mLocClient.isStarted()) {
+			mLocClient.requestLocation();
+			Toast.makeText(getActivity(), "正在定位…", Toast.LENGTH_SHORT).show();
+		} else {
+			Log.d("LocSDK3", "locClient is null or not started");
+		}
+		
+//		if(isFirstLoc){
+//			mLocClient.requestLocation();
+//			Toast.makeText(getActivity(), "正在定位…", Toast.LENGTH_SHORT).show();
+//		}
+
+		/**
+		 * 设定地图中心点 根据自身位置
+		 */
+//		GeoPoint p = new GeoPoint((int) (mLat5 * 1E6), (int) (mLon5 * 1E6));
+//		mMapController.setCenter(p);
+	}
+	
+	private void initBDMapView(View view){
+		mMapView = (MapView) view.findViewById(R.id.bmapsView);
+//		mMapView.setBuiltInZoomControls(true);
+//		mMapView.setLongClickable(true);
+
+		mMapController = mMapView.getController();
+		mMapController.enableClick(true);
+		mMapController.setZoom(12);
+
+		initOverlay();
+		//获取目前自身位置，设置地图中心点
+//		obatinLoc();
+	}
+
+	private void initView(View view) {
+		
+		mSelectorTextView = (TextView) view
+				.findViewById(R.id.id_search_spinner_text);
+		mSelectorTextView.setText(spinner_text[0]);
+		mSelectorTextView.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Dialog dialog = null;
+				Activity activity = getActivity();
+				Builder builder = new AlertDialog.Builder(activity);
+				final ChoiceOnClickListener choiceListener = new ChoiceOnClickListener();
+				builder.setSingleChoiceItems(spinner_text, 0, choiceListener);
+				DialogInterface.OnClickListener btnListener = new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialogInterface,
+							int which) {
+						mSelectorTextView.setText(spinner_text[choiceListener
+								.getWhich()]);
+					}
+				};
+				builder.setPositiveButton("确定", btnListener);
+				dialog = builder.create();
+				dialog.show();
+
+			}
+		});
+
+		picker = (WheelView) view.findViewById(R.id.picker);
+
+	}
+	
+
+	private void initData() {
+		adapter = new ArrayAdapter<String>(getActivity(),
+				android.R.layout.simple_spinner_item, spinner_text);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+		picker.setVisibleItems(4);
+		ArrayWheelAdapter<String> adapter = new ArrayWheelAdapter<String>(
+				getActivity(), shop_name);
+		adapter.setTextSize(12);
+		picker.setViewAdapter(adapter);
+		picker.addChangingListener(listener);
+		mCurItem = mItems.get(0);
+		mMerchantName.setText(mCurItem.getTitle());
+		Bitmap[] bitMaps={getBitmapFromView(mPopCustomView)};		
+		mPop.showPopup(bitMaps, mCurItem.getPoint(), 32);
+
+	}
+
+	OnWheelChangedListener listener = new OnWheelChangedListener() {
+		public void onChanged(WheelView wheel, int oldValue, int newValue) {
+			mCurItem = mItems.get(newValue);
+			mMerchantName.setText(mCurItem.getTitle());
+			Bitmap[] bitMaps={getBitmapFromView(mPopCustomView)};		
+			mPop.showPopup(bitMaps, mCurItem.getPoint(), 32);
+			
+		}
+	};
+
+	class SpinnerSelectedListener implements OnItemSelectedListener {
+
+		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
+			showToast(spinner_text[arg2]);
+		}
+
+		public void onNothingSelected(AdapterView<?> arg0) {
+		}
+	}
+
+	@Override
+	public void onDestroy() {
+		//退出时销毁定位
+        if (mLocClient != null)
+            mLocClient.stop();
+        isLocationClientStop = true;
+		mMapView.destroy();
+		if (mBMapMan != null) {
+			mBMapMan.destroy();
+			mBMapMan = null;
+		}
+		super.onDestroy();
+	}
+
+	@Override
+	public void onPause() {
+		isLocationClientStop = true;
+		mMapView.onPause();
+		if (mBMapMan != null) {
+			mBMapMan.stop();
+		}
+		super.onPause();
+	}
+
+	@Override
+	public void onResume() {
+		isLocationClientStop = false;
+		mMapView.onResume();
+		if (mBMapMan != null) {
+			mBMapMan.start();
+		}
+		super.onResume();
+	}
+	
+	
+
+	private void initOverlay() {
+		// 填充测试数据
+		List<OverlayItem> overList = new ArrayList<OverlayItem>();
+		for (int i = 0; i < 5; ++i) {
+
+			GeoPoint p = new GeoPoint((int) (lonlats[i][0] * 1E6),
+					(int) (lonlats[i][1] * 1E6));
+			OverlayItem item = new OverlayItem(p, "商场" + i, "");
+			overList.add(item);
+		}
+		
+		
+		/**
+		 * 创建自定义overlay
+		 */
+		mOverlay = new MerchantOverlay(getResources().getDrawable(
+				R.drawable.nav_turn_via_1), mMapView);
+		
+		/**
+         * 准备overlay 数据
+         */
+        GeoPoint p1 = new GeoPoint ((int)(mLat1*1E6),(int)(mLon1*1E6));
+        OverlayItem item1 = new OverlayItem(p1,"覆盖物1","");
+        /**
+         * 设置overlay图标，如不设置，则使用创建ItemizedOverlay时的默认图标.
+         */
+//        item1.setMarker(getResources().getDrawable(R.drawable.nav_turn_via_1));
+        
+        GeoPoint p2 = new GeoPoint ((int)(mLat2*1E6),(int)(mLon2*1E6));
+        OverlayItem item2 = new OverlayItem(p2,"覆盖物2","");
+//        item2.setMarker(getResources().getDrawable(R.drawable.ceshi_tu_01));
+        
+        GeoPoint p3 = new GeoPoint ((int)(mLat3*1E6),(int)(mLon3*1E6));
+        OverlayItem item3 = new OverlayItem(p3,"覆盖物3","");
+//        item3.setMarker(getResources().getDrawable(R.drawable.ceshi_tu_01));
+        
+        GeoPoint p4 = new GeoPoint ((int)(mLat4*1E6),(int)(mLon4*1E6));
+        OverlayItem item4 = new OverlayItem(p4,"覆盖物4","");
+//        item4.setMarker(getResources().getDrawable(R.drawable.ceshi_tu_01));
+        
+        GeoPoint p5 = new GeoPoint ((int)(mLat5*1E6),(int)(mLon5*1E6));
+        OverlayItem item5 = new OverlayItem(p5,"覆盖物5","");
+//        item5.setMarker(getResources().getDrawable(R.drawable.ceshi_tu_01));
+        /**
+         * 将item 添加到overlay中
+         * 注意： 同一个itme只能add一次
+         */
+        mOverlay.addItem(item1);
+        mOverlay.addItem(item2);
+        mOverlay.addItem(item3);
+        mOverlay.addItem(item4);
+        mOverlay.addItem(item5);
+//		mOverlay.addItem(overList);
+        
+        mItems = new ArrayList<OverlayItem>();
+        mItems.addAll(mOverlay.getAllItem());
+
+		mMapView.getOverlays().add(mOverlay);
+		
+		/**
+         * 刷新地图
+         */
+        mMapView.refresh();
+
+		/**
+		 * 向地图添加自定义View.
+		 */
+		mPopCustomView = getActivity().getLayoutInflater().inflate(
+				R.layout.merchantiteminbdmap, null);
+		mMerchantName = (TextView) mPopCustomView
+				.findViewById(R.id.id_inbaidumap_merchant_item_name);
+		mMerchantHot = (TextView) mPopCustomView
+				.findViewById(R.id.id_inbaidumap_merchant_item_hot);
+		mMerchantGoodsCount = (TextView) mPopCustomView
+				.findViewById(R.id.id_inbaidumap_merchant_item_goods_count);
+		mMerchantPhone = (TextView) mPopCustomView
+				.findViewById(R.id.id_inbaidumap_merchant_item_phone);
+		mMerchantImage = (ImageView) mPopCustomView
+				.findViewById(R.id.id_inbaidumap_merchant_item_image);
+
+		/**
+         * 创建一个popupoverlay 创建pop对象，注册点击事件监听接口
+         */
+		mPop = new PopupOverlay(mMapView,new PopupClickListener() {
+			
+			@Override
+			public void onClickedPopup(int index) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent(getActivity(), Merchant.class);
+				startActivity(i);
+			}
+		});
+
+	}
+	
+    /**
+     * 清除所有Overlay
+     * @param view
+     */
+    public void clearOverlay(View view){
+    	mOverlay.removeAll();
+    	if (mPop != null){
+            mPop.hidePop();
+    	}
+    	mMapView.refresh();
+    }
+    
+    /**
+     * 重新添加Overlay
+     * @param view
+     */
+    public void resetOverlay(View view){
+    	clearOverlay(null);
+    	//重新add overlay
+    	mOverlay.addItem(mItems);
+    	mMapView.refresh();
+    }
+    
+    
+
+	private class ChoiceOnClickListener implements
+			DialogInterface.OnClickListener {
+
+		private int which = 0;
+
+		@Override
+		public void onClick(DialogInterface dialogInterface, int which) {
+			this.which = which;
+		}
+
+		public int getWhich() {
+			return which;
+		}
+	}
+
+	public class MyLocationListener implements BDLocationListener {
+		@Override
+		public void onReceiveLocation(BDLocation location) {
+			if (location == null)
+				return;
+			mLocData.latitude = location.getLatitude();
+			mLocData.longitude = location.getLongitude();
+//			//如果不显示定位精度圈，将accuracy赋值为0即可
+//			mLocData.accuracy = location.getRadius();
+//			mLocData.direction = location.getDerect();
+			if (isFirstLoc){
+            	//移动地图到定位点
+                mMapController.animateTo(new GeoPoint((int)(mLocData.latitude* 1e6), (int)(mLocData.longitude *  1e6)));
+                mLocClient.unRegisterLocationListener(myListener);
+			}
+            //首次定位完成
+            isFirstLoc = false;
+			StringBuffer sb = new StringBuffer(256);
+			sb.append("time : ");
+			sb.append(location.getTime());
+			sb.append("\nerror code : ");
+			sb.append(location.getLocType());
+			sb.append("\nlatitude : ");
+			sb.append(location.getLatitude());
+			sb.append("\nlontitude : ");
+			sb.append(location.getLongitude());
+			sb.append("\nradius : ");
+			sb.append(location.getRadius());
+			if (location.getLocType() == BDLocation.TypeGpsLocation) {
+				sb.append("\nspeed : ");
+				sb.append(location.getSpeed());
+				sb.append("\nsatellite : ");
+				sb.append(location.getSatelliteNumber());
+			} else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {
+				sb.append("\naddr : ");
+				sb.append(location.getAddrStr());
+			}
+			
+			Log.d("LOC", sb+"");
+            
+//            if (mLocationClient != null)
+//            	mLocationClient.stop();
+
+		}
+
+		public void onReceivePoi(BDLocation poiLocation) {
+			if (poiLocation == null) {
+				return;
+			}
+//			StringBuffer sb = new StringBuffer(256);
+//			sb.append("Poi time : ");
+//			sb.append(poiLocation.getTime());
+//			sb.append("\nerror code : ");
+//			sb.append(poiLocation.getLocType());
+//			sb.append("\nlatitude : ");
+//			sb.append(poiLocation.getLatitude());
+//			sb.append("\nlontitude : ");
+//			sb.append(poiLocation.getLongitude());
+//			sb.append("\nradius : ");
+//			sb.append(poiLocation.getRadius());
+//			if (poiLocation.getLocType() == BDLocation.TypeNetWorkLocation) {
+//				sb.append("\naddr : ");
+//				sb.append(poiLocation.getAddrStr());
+//			}
+//			if (poiLocation.hasPoi()) {
+//				sb.append("\nPoi:");
+//				sb.append(poiLocation.getPoi());
+//			} else {
+//				sb.append("noPoi information");
+//			}
+//			// logMsg(sb.toString());
+		}
+	}
+
+	private class MerchantOverlay extends ItemizedOverlay {
+
+		public MerchantOverlay(Drawable mark, MapView mapView) {
+			super(mark, mapView);
+
+		}
+
+		@Override
+		public boolean onTap(GeoPoint pt, MapView mapView) {
+			// TODO Auto-generated method stub
+			super.onTap(pt, mapView);
+			return false;
+		}
+
+		@Override
+		protected boolean onTap(int index) {
+			// TODO Auto-generated method stub
+			mCurItem = getItem(index);
+			mMerchantName.setText(mCurItem.getTitle());
+			Bitmap[] bitMaps={getBitmapFromView(mPopCustomView)};		
+			mPop.showPopup(bitMaps, mCurItem.getPoint(), 32);
+			return true;
+		}
+
+	}
+	
+	/**
+	 * 把view转换成bitmap
+	 * @param view
+	 * @return
+	 */
+	
+	public Bitmap getBitmapFromView(View view) {
+		
+		view.destroyDrawingCache();
+        view.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        view.setDrawingCacheEnabled(true);
+        Bitmap bitmap = view.getDrawingCache(true);
+        return bitmap;
+	}
+	
+	
+}

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/app_android/!svn/ver/5/FutureTown/src/kankan/wheel/widget/adapters
+END
+WheelViewAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/app_android/!svn/ver/5/FutureTown/src/kankan/wheel/widget/adapters/WheelViewAdapter.java
+END
+ArrayWheelAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/app_android/!svn/ver/5/FutureTown/src/kankan/wheel/widget/adapters/ArrayWheelAdapter.java
+END
+AdapterWheel.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/app_android/!svn/ver/5/FutureTown/src/kankan/wheel/widget/adapters/AdapterWheel.java
+END
+AbstractWheelTextAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/app_android/!svn/ver/5/FutureTown/src/kankan/wheel/widget/adapters/AbstractWheelTextAdapter.java
+END
+AbstractWheelAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/app_android/!svn/ver/5/FutureTown/src/kankan/wheel/widget/adapters/AbstractWheelAdapter.java
+END
+NumericWheelAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/app_android/!svn/ver/5/FutureTown/src/kankan/wheel/widget/adapters/NumericWheelAdapter.java
+END

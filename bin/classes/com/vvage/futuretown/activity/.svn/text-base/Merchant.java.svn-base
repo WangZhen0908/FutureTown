@@ -1,0 +1,296 @@
+package com.vvage.futuretown.activity;
+
+import java.util.LinkedList;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.vvage.futuretown.R;
+import com.vvage.futuretown.base.BaseView;
+import com.vvage.futuretown.util.ExpandList;
+import com.vvage.futuretown.util.ExpandList.OnRefreshListener;
+
+public class Merchant extends BaseView {
+	
+	private BaseAdapter adapter;
+	private LinkedList<TestData> data;
+	
+	private ExpandList listView;
+	private RelativeLayout mLayout;
+
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		int visible = LinearLayout.VISIBLE;
+		setTitleParams(new TitleParams("返回", visible, "商家", "登录", visible));
+		super.onCreate(savedInstanceState);
+	}
+
+	@Override
+	protected void onClickLeft() {
+		// TODO Auto-generated method stub
+//		finish();
+		
+	}
+
+	@Override
+	protected void onClickRight() {
+		// TODO Auto-generated method stub
+//		mTitleParams.isrightVisible = LinearLayout.GONE;
+	}
+
+	@Override
+	protected View creatView(Context context) {
+		// TODO Auto-generated method stub
+		
+		View layout = LayoutInflater.from(context).inflate(R.layout.merchant, null);
+		
+		mLayout = (RelativeLayout)layout.findViewById(R.id.id_merchant_introdcue_layout);
+		mLayout.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent i=new Intent(Merchant.this, MerchantDetail.class);
+				startActivity(i);
+			}
+		});
+
+		// 测试数据------------------------------------------------
+
+		data = new LinkedList<TestData>();
+		for (int i = 0; i < 10; i++) {
+			data.add(new TestData());
+		}
+
+		listView = (ExpandList)layout.findViewById(R.id.id_merchant_goods_listview);
+		adapter = new BaseAdapter() {
+			public View getView(int position, View convertView, ViewGroup parent) {
+				convertView = LayoutInflater.from(getApplicationContext())
+						.inflate(R.layout.list_merchant_item, null);
+				ImageView i = (ImageView) convertView
+						.findViewById(R.id.id_merchant_list_item_imageview);
+				TextView name = (TextView) convertView
+						.findViewById(R.id.id_merchant_list_item_goods_name_text);
+				TextView price = (TextView) convertView
+						.findViewById(R.id.id_merchant_list_item_price_text);
+				TextView detail = (TextView) convertView
+						.findViewById(R.id.id_merchant_list_item_goods_dial);
+				i.setBackgroundDrawable(data.get(position).image);
+				
+				TextView purpose = (TextView) convertView
+						.findViewById(R.id.id_merchant_list_item_goods_purpose_type);
+				purpose.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View arg0) {
+						// TODO Auto-generated method stub
+						Intent i = new Intent(Merchant.this, UserEnquireActivity.class);
+						startActivity(i);
+					}
+				});
+
+				name.setText(data.get(position).str);
+				name.setText(data.get(position).price);
+				name.setText(data.get(position).detail);
+				return convertView;
+			}
+
+			public long getItemId(int position) {
+				return position;
+			}
+
+			public Object getItem(int position) {
+				return data.get(position);
+			}
+
+			public int getCount() {
+				return data.size();
+			}
+		};
+		listView.setAdapter(adapter);
+		listView.setOnItemClickListener(itemClickListener);
+
+		listView.setonRefreshListener(new OnRefreshListener() {
+			public void onRefresh(final RefreshDirecton directon) {
+				new AsyncTask<Void, Void, Void>() {
+					protected Void doInBackground(Void... params) {
+						try {
+							Thread.sleep(1000);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						if (directon == RefreshDirecton.DOWN) {
+							data.addFirst(new TestData());
+						} else if (directon == RefreshDirecton.UP) {
+							data.add(new TestData());
+						}
+						return null;
+					}
+
+					@Override
+					protected void onPostExecute(Void result) {
+						if (directon == RefreshDirecton.DOWN) {
+							adapter.notifyDataSetChanged();
+							listView.onRefreshComplete();
+						} else if (directon == RefreshDirecton.UP) {
+							adapter.notifyDataSetChanged();
+						}
+
+					}
+
+				}.execute(null);
+			}
+		});
+		return layout;
+	}
+
+
+//	@Override
+//	protected void onCreate(Bundle savedInstanceState) {
+//		// TODO Auto-generated method stub
+//		super.onCreate(savedInstanceState);
+//		setContentView(R.layout.merchant);
+//		
+//		mLayout = (RelativeLayout)findViewById(R.id.id_merchant_introdcue_layout);
+//		mLayout.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				Intent i=new Intent(Merchant.this, MerchantDetail.class);
+//				startActivity(i);
+//			}
+//		});
+//
+//		// 测试数据------------------------------------------------
+//
+//		data = new LinkedList<TestData>();
+//		for (int i = 0; i < 10; i++) {
+//			data.add(new TestData());
+//		}
+//
+//		listView = (ExpandList) findViewById(R.id.id_merchant_goods_listview);
+//		adapter = new BaseAdapter() {
+//			public View getView(int position, View convertView, ViewGroup parent) {
+//				convertView = LayoutInflater.from(getApplicationContext())
+//						.inflate(R.layout.list_merchant_item, null);
+//				ImageView i = (ImageView) convertView
+//						.findViewById(R.id.id_merchant_list_item_imageview);
+//				TextView name = (TextView) convertView
+//						.findViewById(R.id.id_merchant_list_item_goods_name_text);
+//				TextView price = (TextView) convertView
+//						.findViewById(R.id.id_merchant_list_item_price_text);
+//				TextView detail = (TextView) convertView
+//						.findViewById(R.id.id_merchant_list_item_goods_dial);
+//				i.setBackgroundDrawable(data.get(position).image);
+//				
+//				TextView purpose = (TextView) convertView
+//						.findViewById(R.id.id_merchant_list_item_goods_purpose_type);
+//				purpose.setOnClickListener(new OnClickListener() {
+//					
+//					@Override
+//					public void onClick(View arg0) {
+//						// TODO Auto-generated method stub
+//						Intent i = new Intent(Merchant.this, UserEnquireActivity.class);
+//						startActivity(i);
+//					}
+//				});
+//
+//				name.setText(data.get(position).str);
+//				name.setText(data.get(position).price);
+//				name.setText(data.get(position).detail);
+//				return convertView;
+//			}
+//
+//			public long getItemId(int position) {
+//				return position;
+//			}
+//
+//			public Object getItem(int position) {
+//				return data.get(position);
+//			}
+//
+//			public int getCount() {
+//				return data.size();
+//			}
+//		};
+//		listView.setAdapter(adapter);
+//		listView.setOnItemClickListener(itemClickListener);
+//
+//		listView.setonRefreshListener(new OnRefreshListener() {
+//			public void onRefresh(final RefreshDirecton directon) {
+//				new AsyncTask<Void, Void, Void>() {
+//					protected Void doInBackground(Void... params) {
+//						try {
+//							Thread.sleep(1000);
+//						} catch (Exception e) {
+//							e.printStackTrace();
+//						}
+//						if (directon == RefreshDirecton.DOWN) {
+//							data.addFirst(new TestData());
+//						} else if (directon == RefreshDirecton.UP) {
+//							data.add(new TestData());
+//						}
+//						return null;
+//					}
+//
+//					@Override
+//					protected void onPostExecute(Void result) {
+//						if (directon == RefreshDirecton.DOWN) {
+//							adapter.notifyDataSetChanged();
+//							listView.onRefreshComplete();
+//						} else if (directon == RefreshDirecton.UP) {
+//							adapter.notifyDataSetChanged();
+//						}
+//
+//					}
+//
+//				}.execute(null);
+//			}
+//		});
+//	}
+	
+	private OnItemClickListener itemClickListener = new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
+			// TODO Auto-generated method stub
+			if(arg3==-1)
+				return;
+			
+			int realPosition=(int)arg2;  
+			TestData td = (TestData)listView.getAdapter().getItem(arg2);
+			
+			Intent intent=new Intent(Merchant.this, MerchantGoodsDetail.class);
+			startActivity(intent);
+		}
+		
+	};
+
+	// private class ListAdapter extends BaseAdapter
+
+	private class TestData {
+		public Drawable image = getResources().getDrawable(
+				R.drawable.ceshi_tu_02);
+		public String str = "品名:雪纺连衣裙 夏 2013女装新款赛尼瑞欧美碎花修身连衣裙大码显瘦款";
+		public String price = "价格：¥ 656.00";
+		String detail = "详情：单笔订单满150元送10.00元店铺优惠券; 单笔订单满300元,送20.00元店铺优惠券; 单笔订单满499元减30元，减后满499元， 送20.00元店铺优惠券; 单笔订单满600元减30元，减后满600元， 送50.00元店铺优惠券;";
+
+	}
+
+}

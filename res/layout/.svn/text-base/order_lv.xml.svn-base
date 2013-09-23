@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+<RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+  android:layout_margin="10dp"
+    >
+    <ImageView
+        android:id="@+id/order_lv_im"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_alignBottom="@+id/order_lv_btnshan" 
+        android:scaleType="fitXY"
+        />
+
+<TextView 
+    android:id="@+id/order_lv_goodsname"
+    android:layout_width="wrap_content"
+     android:layout_height="20dp"
+    android:layout_toRightOf="@id/order_lv_im"
+	
+	android:layout_marginTop="10dp"
+		
+		
+    />
+
+<TextView 
+    android:id="@+id/order_lv_price"
+    android:layout_width="fill_parent"
+    android:layout_height="20dp"
+    android:layout_toRightOf="@id/order_lv_im"
+    android:layout_below="@id/order_lv_goodsname"
+
+	android:layout_marginTop="10dp"
+    />
+
+<Button
+    android:id="@+id/order_lv_btnshan"
+    android:layout_width="70dp"
+    android:layout_height="30dp"
+    android:layout_below="@id/order_lv_price"
+    android:layout_marginTop="10dp"
+     android:layout_marginLeft="10dp"
+    android:layout_toRightOf="@id/order_lv_im"
+    android:text="删除商品"
+    android:textSize="15dp"
+     android:textColor="@android:color/white"
+    android:background="@drawable/shanchu_goods"
+     />
+
+<Button
+    android:id="@+id/order_lv_btnbian"
+    android:layout_width="70dp"
+    android:layout_height="30dp"
+      android:layout_marginTop="10dp"
+      android:layout_marginLeft="10dp"
+    android:layout_below="@id/order_lv_price"
+    android:layout_toRightOf="@+id/order_lv_btnshan"
+    android:background="@drawable/bianji_goods"
+    android:text="编辑商品"
+    android:textColor="@android:color/white"
+    android:textSize="15dp" />
+    
+</RelativeLayout>
+   
+
+</RelativeLayout>

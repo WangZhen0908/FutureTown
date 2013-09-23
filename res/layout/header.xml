@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="50dp"
+    android:background="@drawable/header_bg" >
+
+   <RelativeLayout
+        android:id="@+id/top_relative1"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp" >
+        
+
+        <ImageView
+            android:id="@+id/titleBg1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/header_bg" />
+        
+        <Button
+            android:id="@+id/id_ref_button"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/pai_deng"
+            android:gravity="center"
+            android:text="刷新"
+            android:textColor="@android:color/white" 
+            />
+
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            >
+            <Button
+            android:id="@+id/id_favor_seller"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:background="@drawable/btn_title_l_press"
+            android:text="收藏商家"
+            android:textColor="@android:color/white"
+            android:textSize="15dp" />
+            <Button
+            android:id="@+id/id_favor_goods"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:background="@drawable/btn_title_r"
+            android:text="收藏商品"
+            android:textColor="@android:color/white"
+            android:textSize="15dp" 
+            />
+        </LinearLayout>
+        
+
+        
+        <Button
+            android:id="@+id/id_login_button"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/pai_deng"
+            android:gravity="center"
+            android:text="登录"
+            android:textColor="@android:color/white" 
+            />
+    </RelativeLayout>
+
+
+</RelativeLayout>

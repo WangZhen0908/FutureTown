@@ -1,0 +1,108 @@
+package com.vvage.futuretown.activity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.vvage.futuretown.R;
+import com.vvage.futuretown.adapter.OrderManageAdapter;
+import com.vvage.futuretown.adapter.OrderManageAdapter2;
+import com.vvage.futuretown.model.Order;
+import com.vvage.futuretown.model.OrderManager;
+
+public class OrderManageActivity extends Activity{
+	private List<Order>data;
+	private List<OrderManager>data1;
+	private BaseAdapter adapter,adapter2;
+	private ListView lv;
+	private TextView userName,phone,add,bianhao,zonge,shuohuoren,lianxiphone,shouadd;
+	private ImageView im;
+	private Button order,huifu;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.userorder);
+		
+		lv=(ListView) findViewById(R.id.uo_lv);
+		
+		userName=(TextView) findViewById(R.id.uo_name);
+		
+		add=(TextView) findViewById(R.id.uo_add);
+		bianhao=(TextView) findViewById(R.id.uo_bianhao);
+		zonge=(TextView) findViewById(R.id.uo_shu);
+		im=(ImageView) findViewById(R.id.uo_im);
+		shuohuoren=(TextView) findViewById(R.id.uo_shouhuoren);
+		lianxiphone=(TextView) findViewById(R.id.uo_phone);
+		shouadd=(TextView) findViewById(R.id.uo_add2);
+		
+		order=(Button) findViewById(R.id.userorder_manage);
+		huifu=(Button) findViewById(R.id.userorder_huifu);
+		
+		
+		
+		userName.setText("店名："+"王零蛋");
+		
+		add.setText("地址："+"北京市昌平区霍营乡小辛庄村向阳区十八号");
+		bianhao.setText("编号："+"12335123");
+		zonge.setText("总额："+"35123");
+		im.setImageResource(R.drawable.ceshi_tu_02);
+		shuohuoren.setText("收货人："+"王零蛋");
+		lianxiphone.setText("联系方式："+"12335123");
+		shouadd.setText("地址："+"北京市昌平区霍营乡小辛庄村向阳区十八号");
+		
+		
+		
+		
+		data=new ArrayList<Order>();
+		
+		data.add(new Order(R.drawable.ceshi_tu_01, "品名："+"糖果屋", "金额:￥"+"445"));
+		data.add(new Order(R.drawable.ceshi_tu_01, "品名："+"糖果屋", "金额:￥"+"445"));
+		data.add(new Order(R.drawable.ceshi_tu_01, "品名："+"糖果屋", "金额:￥"+"445"));
+		
+		adapter=new OrderManageAdapter(data, this);
+		
+		data1=new ArrayList<OrderManager>();
+		
+		data1.add(new OrderManager(R.drawable.ceshi_tu_01, "品名："+"糖果屋", "金额:￥"+"445","已处理"));
+		data1.add(new OrderManager(R.drawable.ceshi_tu_01, "品名："+"糖果屋", "金额:￥"+"445","未处理"));
+		data1.add(new OrderManager(R.drawable.ceshi_tu_01, "品名："+"糖果屋", "金额:￥"+"445","已删除"));
+		
+		adapter2=new OrderManageAdapter2(data1, this);
+		lv.setAdapter(adapter);
+		order.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				lv.setAdapter(adapter);
+				new Uitity().setListViewHeightBasedOnChildren(lv);
+				order.setBackgroundResource(R.drawable.press);
+				huifu.setBackgroundResource(R.drawable.press_nor);
+			}
+		});
+		huifu.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				lv.setAdapter(adapter2);
+				new Uitity().setListViewHeightBasedOnChildren(lv);
+				order.setBackgroundResource(R.drawable.pai_shangpin_press_nor);
+				huifu.setBackgroundResource(R.drawable.pai_shangjia_press);
+			}
+		});
+		
+		
+	}
+
+}

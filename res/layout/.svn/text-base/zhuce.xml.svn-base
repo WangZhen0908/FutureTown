@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+     >
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/header_bg" >
+        
+        <Button
+            android:id="@+id/zhuce_back_btn"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/pai_deng"
+            android:gravity="center"
+            android:text="返回"
+             android:textColor="@android:color/white"
+             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="注册"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="手机号："
+            android:textSize="15sp" 
+            android:layout_gravity="center_vertical"
+            />
+
+        <EditText
+            android:id="@+id/zc_phone"
+            android:layout_width="220dp"
+            android:layout_height="30dp"
+            android:background="@drawable/pai_edit_03"
+             android:layout_gravity="center_vertical"
+             >
+
+           
+        </EditText>
+
+    </LinearLayout>
+    <Button 
+        android:id="@+id/zc_send_ma"
+        android:layout_gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="发送验证码"
+        android:layout_marginRight="17dp"
+        android:layout_marginTop="7dp"
+         android:background="@drawable/denglu_sure_bg"
+        />
+    
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="7dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="验证码："
+            android:textSize="15sp" 
+            android:layout_gravity="center_vertical"
+            />
+
+        <EditText
+            android:id="@+id/zc_yan_ma"
+            android:layout_width="220dp"
+            android:layout_height="30dp"
+            android:background="@drawable/pai_edit_03"
+             android:layout_gravity="center_vertical"
+             >
+
+           
+        </EditText>
+
+    </LinearLayout>
+    
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="密    码："
+            android:textSize="15sp" 
+            android:layout_gravity="center_vertical"
+            />
+
+        <EditText
+            android:id="@+id/zc_mi_ma"
+            android:layout_width="220dp"
+            android:layout_height="30dp"
+            android:background="@drawable/pai_edit_03"
+             android:layout_gravity="center_vertical"
+             >
+
+           
+        </EditText>
+
+    </LinearLayout>
+    
+    <Button
+        android:id="@+id/zc_sure_btn"
+        android:layout_width="285dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:background="@drawable/denglu"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@android:color/white" 
+        android:layout_marginTop="20dp"
+        />
+    
+    
+    
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

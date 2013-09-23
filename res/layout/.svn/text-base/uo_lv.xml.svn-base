@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp" >
+
+        <ImageView
+            android:id="@+id/om_lv_im1"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/om_lv_goodsname"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/om_lv_im1" />
+
+        <TextView
+            android:id="@+id/om_lv_price"
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"
+            android:layout_below="@id/om_lv_goodsname"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/om_lv_im1" />
+
+        <Button
+            android:id="@+id/om_lv_btnshan"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@id/om_lv_price"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/om_lv_im1"
+            android:background="@drawable/shanchu_goods"
+            android:text="从订单中删除"
+            android:textColor="@android:color/white"
+            android:textSize="12dp" />
+
+       <TextView 
+           android:id="@+id/om_lv_chuli"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@id/om_lv_price"
+           android:layout_toRightOf="@id/om_lv_btnshan"
+           android:layout_centerVertical="true"
+           android:layout_marginTop="10dp"
+           />
+    </RelativeLayout>
+    
+</LinearLayout>

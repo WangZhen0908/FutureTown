@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+      android:background="@drawable/ship_lv_bg_03"
+      android:layout_margin="10dp"
+        >
+        <TextView 
+            android:id="@+id/ship_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/white"
+            />
+        
+        <TextView 
+            android:id="@+id/ship_name"
+            android:layout_below="@id/ship_id"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="收货人地址"
+            android:layout_margin="3dp"
+            
+            />
+        <TextView 
+            android:id="@+id/ship_phone"
+            android:layout_below="@id/ship_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="收货人地址"
+           android:layout_marginRight="5dp"
+              android:layout_marginLeft="5dp"
+            />
+        <TextView 
+            android:id="@+id/ship_add"
+            android:layout_below="@id/ship_phone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="收货人地址"
+              android:layout_marginTop="5dp"
+              android:layout_marginLeft="5dp"
+             android:layout_marginRight="5dp"
+            />
+        
+        
+        
+        
+        
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+      <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal" >
+    
+    
+    <TextView
+       android:id="@+id/sh_gv_tv"
+        android:layout_width="60dp"
+        android:layout_height="30dp"  
+        android:background="@drawable/shang_ceng"
+        android:text="一层"
+        android:gravity="center"
+           android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:layout_gravity="center_vertical"
+        />
+</LinearLayout>
+</LinearLayout>

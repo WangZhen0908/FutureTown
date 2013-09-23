@@ -1,0 +1,104 @@
+package com.vvage.futuretown.activity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.vvage.futuretown.R;
+import com.vvage.futuretown.adapter.HuifuAdapter;
+import com.vvage.futuretown.adapter.UserEnquireAdapter;
+import com.vvage.futuretown.model.HuiFu;
+import com.vvage.futuretown.model.Order;
+
+public class UserEnquireActivity extends Activity {
+	private Button paishangchang;
+	private List<Order> data;
+	private List<HuiFu> data1;
+	private BaseAdapter adapter, adapter1;
+	private ListView lv;
+	private TextView userName, phone, add;
+	private Button xunjia, fuxunjia;
+	private LinearLayout l1;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.usersxunjia);
+
+		lv = (ListView) findViewById(R.id.ux_lv);
+		userName = (TextView) findViewById(R.id.ux_lv_user);
+		phone = (TextView) findViewById(R.id.ux_lv_phone);
+		add = (TextView) findViewById(R.id.ux_lv_add);
+
+		xunjia = (Button) findViewById(R.id.ux_xunjia);
+		fuxunjia = (Button) findViewById(R.id.ux_yifu);
+		l1 = (LinearLayout) findViewById(R.id.ux_l1);
+
+		userName.setText("用户名：" + "王零蛋");
+		phone.setText("电话：" + "2.12335123");
+		add.setText("地址：" + "北京市昌平区霍营乡小辛庄村向阳区十八号");
+
+		data = new ArrayList<Order>();
+
+		data.add(new Order(R.drawable.ceshi_tu_01, "品名：" + "2012春季新款亮色小西服",
+				"金额:￥" + "445"));
+
+		data.add(new Order(R.drawable.ceshi_tu_01, "品名：" + "2012春季新款亮色小西服",
+				"金额:￥" + "445"));
+		data.add(new Order(R.drawable.ceshi_tu_01, "品名：" + "2012春季新款亮色小西服",
+				"金额:￥" + "445"));
+		adapter = new UserEnquireAdapter(data, this);
+		lv.setAdapter(adapter);
+
+		data1 = new ArrayList<HuiFu>();
+		data1.add(new HuiFu(R.drawable.ceshi_tu_01, "用户名：" + "王零蛋", "电话："
+				+ "2.12335123", "地址：" + "北京市昌平区霍营乡小辛庄村向阳区十八号", "品名："
+				+ "2012春季新款亮色小西服", "金额:￥" + "445", "￥123", "12:02:04"));
+		data1.add(new HuiFu(R.drawable.ceshi_tu_01, "用户名：" + "王零蛋", "电话："
+				+ "2.12335123", "地址：" + "北京市昌平区霍营乡小辛庄村向阳区十八号", "品名："
+				+ "2012春季新款亮色小西服", "金额:￥" + "445", "￥123", "12:02:04"));
+		data1.add(new HuiFu(R.drawable.ceshi_tu_01, "用户名：" + "王零蛋", "电话："
+				+ "2.12335123", "地址：" + "北京市昌平区霍营乡小辛庄村向阳区十八号", "品名："
+				+ "2012春季新款亮色小西服", "金额:￥" + "445", "￥123", "12:02:04"));
+		data1.add(new HuiFu(R.drawable.ceshi_tu_01, "用户名：" + "王零蛋", "电话："
+				+ "2.12335123", "地址：" + "北京市昌平区霍营乡小辛庄村向阳区十八号", "品名："
+				+ "2012春季新款亮色小西服", "金额:￥" + "445", "￥123", "12:02:04"));
+		adapter1 = new HuifuAdapter(data1, this);
+		xunjia.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				lv.setAdapter(adapter);
+
+				xunjia.setBackgroundResource(R.drawable.press);
+				fuxunjia.setBackgroundResource(R.drawable.press_nor);
+				l1.setVisibility(v.VISIBLE);
+			}
+		});
+		fuxunjia.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				lv.setAdapter(adapter1);
+
+				xunjia.setBackgroundResource(R.drawable.pai_shangpin_press_nor);
+				fuxunjia.setBackgroundResource(R.drawable.pai_shangjia_press);
+				l1.setVisibility(v.GONE);
+			}
+		});
+
+	}
+
+}

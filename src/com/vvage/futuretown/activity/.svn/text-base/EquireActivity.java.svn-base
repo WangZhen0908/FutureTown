@@ -1,0 +1,83 @@
+package com.vvage.futuretown.activity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+
+import com.vvage.futuretown.R;
+import com.vvage.futuretown.adapter.EquireAdapter;
+import com.vvage.futuretown.adapter.YiHuiFuAdapter;
+import com.vvage.futuretown.model.Equire;
+import com.vvage.futuretown.model.YiHuiFu;
+
+public class EquireActivity extends Activity{
+	private List<Equire> data;
+	
+	private ListView lv;
+	private BaseAdapter adapter,adapter1;
+	private List<YiHuiFu>data1;
+	private Button yifa,fuxunjia;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.enquiry);
+		lv = (ListView) findViewById(R.id.enquiry_lv);
+		yifa=(Button) findViewById(R.id.yifa_enquiry);
+		fuxunjia=(Button) findViewById(R.id.huifu_enquiry);
+		
+		data=new ArrayList<Equire>();
+		data.add(new Equire(R.drawable.ceshi_tu_02, R.drawable.ceshi_tu_01, "店名："+"五彩缤纷小屋", "编号："+"203122312", "地址："+"北京市海淀区西直门在 城标", "品名："+"2012春季新款亮色小西服", "金额:￥"+"445"));
+		data.add(new Equire(R.drawable.ceshi_tu_02, R.drawable.ceshi_tu_01, "店名："+"五彩缤纷小屋", "编号："+"203122312", "地址："+"北京市海淀区西直门在 城标", "品名："+"2012春季新款亮色小西服", "金额:￥"+"445"));
+		data.add(new Equire(R.drawable.ceshi_tu_02, R.drawable.ceshi_tu_01, "店名："+"五彩缤纷小屋", "编号："+"203122312", "地址："+"北京市海淀区西直门在 城标", "品名："+"2012春季新款亮色小西服", "金额:￥"+"445"));
+		
+		adapter=new EquireAdapter(data, this);
+		lv.setAdapter(adapter);
+		
+		data1=new ArrayList<YiHuiFu>();
+		data1.add(new YiHuiFu(R.drawable.ceshi_tu_02, R.drawable.ceshi_tu_01, "店名："+"五彩缤纷小屋", "编号："+"203122312", "地址："+"北京市海淀区西直门在 城标", "品名："+"2012春季新款亮色小西服", "金额:￥"+"445", "￥123", "12:02:04"));
+		data1.add(new YiHuiFu(R.drawable.ceshi_tu_02, R.drawable.ceshi_tu_01, "店名："+"五彩缤纷小屋", "编号："+"203122312", "地址："+"北京市海淀区西直门在 城标", "品名："+"2012春季新款亮色小西服", "金额:￥"+"445", "￥123", "12:02:04"));
+		data1.add(new YiHuiFu(R.drawable.ceshi_tu_02, R.drawable.ceshi_tu_01, "店名："+"五彩缤纷小屋", "编号："+"203122312", "地址："+"北京市海淀区西直门在 城标", "品名："+"2012春季新款亮色小西服", "金额:￥"+"445", "￥123", "12:02:04"));
+		data1.add(new YiHuiFu(R.drawable.ceshi_tu_02, R.drawable.ceshi_tu_01, "店名："+"五彩缤纷小屋", "编号："+"203122312", "地址："+"北京市海淀区西直门在 城标", "品名："+"2012春季新款亮色小西服", "金额:￥"+"445", "￥123", "12:02:04"));
+		adapter1=new YiHuiFuAdapter(data1, this);
+		
+		yifa.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				lv.setAdapter(adapter);
+				
+				yifa.setBackgroundResource(R.drawable.press);
+				fuxunjia.setBackgroundResource(R.drawable.press_nor);
+				
+			}
+		});
+		fuxunjia.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				lv.setAdapter(adapter1);
+				
+				yifa.setBackgroundResource(R.drawable.pai_shangpin_press_nor);
+				fuxunjia.setBackgroundResource(R.drawable.pai_shangjia_press);
+				
+			}
+		});
+		
+		
+		
+		
+		
+		
+	}
+
+}

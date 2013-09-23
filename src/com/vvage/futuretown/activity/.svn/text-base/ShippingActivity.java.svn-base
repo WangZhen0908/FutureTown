@@ -1,0 +1,47 @@
+package com.vvage.futuretown.activity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
+
+import com.vvage.futuretown.R;
+import com.vvage.futuretown.adapter.ShippingAdapter;
+import com.vvage.futuretown.model.Shipping;
+
+public class ShippingActivity extends Activity {
+	private List<Shipping> data;
+	private ListView lv;
+	private BaseAdapter adapter;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.shippingadd);
+		init();
+	}
+
+	private void init() {
+		// TODO Auto-generated method stub
+
+		lv = (ListView) findViewById(R.id.ship_lv);
+		data = new ArrayList<Shipping>();
+		data.add(new Shipping("1", "收获人:" + "高玉婷", "收货人电话：" + "1501334252",
+				"收货地址:" + "北京市昌平区霍营乡小辛庄村向阳小区10号"));
+		data.add(new Shipping("2", "收获人:" + "高玉婷", "收货人电话：" + "1501334252",
+				"收货地址:" + "北京市昌平区霍营乡小辛庄村向阳小区10号"));
+		data.add(new Shipping("3", "收获人:" + "高玉婷", "收货人电话：" + "1501334252",
+				"收货地址:" + "北京市昌平区霍营乡小辛庄村向阳小区10号"));
+		data.add(new Shipping("4", "收获人:" + "高玉婷", "收货人电话：" + "1501334252",
+				"收货地址:" + "北京市昌平区霍营乡小辛庄村向阳小区10号"));
+		adapter = new ShippingAdapter(data, this);
+		lv.setAdapter(adapter);
+		new Uitity().setListViewHeightBasedOnChildren(lv);
+
+	}
+
+}

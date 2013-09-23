@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/header_bg" >
+
+        <Button
+            android:id="@+id/sj_back_btn"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/pai_deng"
+            android:gravity="center"
+            android:text="返回"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="商品详情"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/sj_shou_btn"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/pai_deng"
+            android:gravity="center"
+            android:text="@string/login_text"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <ImageButton
+            android:id="@+id/id_merchant_goods_detail_arrow_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/up" />
+
+        <ViewFlipper
+            android:id="@+id/id_merchant_goods_detail_googs_photoshow_viewflipper"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:scaleType="fitXY" />
+
+        <ImageButton
+            android:id="@+id/id_merchant_goods_detail_arrow_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/next" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        >
+
+        <TextView
+            android:id="@+id/id_merchant_goods_detail_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="品名:" />
+
+        <TextView
+            android:id="@+id/id_merchant_goods_detail_name_textview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/id_merchant_goods_detail_name_text"
+            android:layout_alignTop="@+id/id_merchant_goods_detail_name_text"
+            android:layout_marginLeft="10dp"
+            />
+        
+        <TextView 
+            android:id="@+id/id_merchant_goods_detail_price_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/id_merchant_goods_detail_name_text"
+            android:layout_marginTop="20dp"
+            android:text="价格:"
+            />
+        <TextView 
+            android:id="@+id/id_id_merchant_goods_detail_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/id_merchant_goods_detail_price_text"
+            android:layout_alignTop="@+id/id_merchant_goods_detail_price_text"
+            android:layout_marginLeft="10dp"
+            />
+
+
+        <Button
+            android:id="@+id/id_merchant_goods_detail_addtocart_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/id_id_merchant_goods_detail_price"
+            android:layout_below="@+id/id_id_merchant_goods_detail_price"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_shoot_merchandies"
+            android:text="加入购物车"
+            android:textColor="@android:color/white"
+            android:textSize="15dp" 
+            android:padding="5dp"
+            />
+
+        <TextView
+            android:id="@+id/id_merchant_goods_detail_dail_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_alignTop="@+id/id_merchant_goods_detail_addtocart_btn"
+            android:layout_toRightOf="@+id/id_merchant_goods_detail_addtocart_btn"
+            android:background="@drawable/shou_phone" 
+            android:text="拨电话"
+            android:textColor="@android:color/white"
+            android:padding="5dp"
+            />
+
+
+        <TextView
+            android:id="@+id/id_merchant_detail_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id_merchant_goods_detail_addtocart_btn"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentLeft="true"
+            android:text="详情 :" />
+
+        <TextView
+            android:id="@+id/id_merchant_goods_detail_detail_text"
+            android:layout_alignTop="@+id/id_merchant_detail_detail"
+            android:layout_toRightOf="@+id/id_merchant_detail_detail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

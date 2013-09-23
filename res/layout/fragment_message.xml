@@ -1,0 +1,903 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/top_relative1"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp" >
+
+        <ImageView
+            android:id="@+id/titleBg1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/header_bg" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/id_shoot_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@drawable/btn_title_l_press"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="商家入驻"
+                android:textColor="@android:color/white"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/id_shoot_merchandies"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@drawable/btn_title_r"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="发布商品"
+                android:textColor="@android:color/white"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/id_merchant_photo_login_button"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/pai_deng"
+            android:gravity="center"
+            android:text="登录"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/re1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp" >
+
+                <Button
+                    android:id="@+id/id_photo_button"
+                    android:layout_width="70dip"
+                    android:layout_height="110dip"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/pai" />
+
+                <!--
+            	<GridView 
+                    android:id="@+id/id_merchantorpersonal_photo_gridview"
+                    android:layout_toRightOf="@+id/id_photo_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="2"
+                    android:stretchMode="columnWidth"
+                    android:horizontalSpacing="10dp"
+                    android:verticalSpacing="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="8dp"
+                    android:gravity="center"
+                    android:isScrollContainer="false"
+                    >
+
+                </GridView>
+                -->
+
+                <FrameLayout
+                    android:id="@+id/id_photo_image_layout_1"
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/id_photo_button" >
+
+                    <ImageView
+                        android:id="@+id/id_photo_image_1"
+                        android:layout_width="80dp"
+                        android:layout_height="50dp" />
+
+                    <ImageView
+                        android:id="@+id/id_photo_image_delete_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|right"
+                        android:background="@drawable/photo_delete" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/id_photo_image_layout_2"
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/id_photo_image_layout_1" >
+
+                    <ImageView
+                        android:id="@+id/id_photo_image_2"
+                        android:layout_width="80dp"
+                        android:layout_height="50dp" />
+
+                    <ImageView
+                        android:id="@+id/id_photo_image_delete_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|right"
+                        android:background="@drawable/photo_delete" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/id_photo_image_layout_3"
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/id_photo_image_layout_1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/id_photo_button" >
+
+                    <ImageView
+                        android:id="@+id/id_photo_image_3"
+                        android:layout_width="80dp"
+                        android:layout_height="50dp" />
+
+                    <ImageView
+                        android:id="@+id/id_photo_image_delete_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|right"
+                        android:background="@drawable/photo_delete" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/id_photo_image_layout_4"
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/id_photo_image_layout_2"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/id_photo_image_layout_3" >
+
+                    <ImageView
+                        android:id="@+id/id_photo_image_4"
+                        android:layout_width="80dp"
+                        android:layout_height="50dp" />
+
+                    <ImageView
+                        android:id="@+id/id_photo_image_delete_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|right"
+                        android:background="@drawable/photo_delete" />
+                </FrameLayout>
+            </RelativeLayout>
+
+<!-- 商家layout -->
+
+            <LinearLayout
+                android:id="@+id/l1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:visibility="visible" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp" >
+
+                    <TextView
+                        android:id="@+id/id_merchant_name_text"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/text"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/id_merchant_name_edit"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/pai_edit_03" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/bixu" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp" >
+
+                    <TextView
+                        android:id="@+id/id_merchant_tip_text"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/text1"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/id_merchant_tip_edit"
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/pai_edit_03" >
+                    </EditText>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="7dp" >
+
+                    <TextView
+                        android:id="@+id/tx2"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:text="@string/text2"
+                        android:textSize="15sp" />
+
+                    <RadioGroup
+                        android:id="@+id/id_merchant_management_categories"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tx2"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:id="@+id/id_merchant_management_categories_eat"
+                            style="@style/MyCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/merchant_management_category_eat_text" />
+
+                        <RadioButton
+                            android:id="@+id/id_merchant_management_categories_wear"
+                            style="@style/MyCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/merchant_management_category_wear_text" />
+
+                        <RadioButton
+                            android:id="@+id/id_merchant_management_categories_live"
+                            style="@style/MyCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/merchant_management_category_live_text" />
+
+                        <RadioButton
+                            android:id="@+id/id_merchant_management_categories_use"
+                            style="@style/MyCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/merchant_management_category_use_text" />
+
+                        <RadioButton
+                            android:id="@+id/id_merchant_management_categories_play"
+                            style="@style/MyCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/merchant_management_category_play_text" />
+
+                        <RadioButton
+                            android:id="@+id/id_merchant_management_categories_etc"
+                            style="@style/MyCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/merchant_management_category_etc_text" />
+                    </RadioGroup>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp" >
+
+                    <TextView
+                        android:id="@+id/tx3"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:text="@string/text3"
+                        android:textSize="15sp" />
+
+                    <RadioGroup
+                        android:id="@+id/id_merchant_store_type"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tx3"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:id="@+id/id_merchant_store_type_independent"
+                            style="@style/MyCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="@string/merchant_store_type_independent_text" />
+
+                        <RadioButton
+                            android:id="@+id/id_merchant_store_type_shoppingmall"
+                            style="@style/MyCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="@string/merchant_store_type_shoppingmall_text" />
+                    </RadioGroup>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp" >
+
+                    <TextView
+                        android:id="@+id/tx4"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/text4"
+                        android:textSize="15sp" />
+
+                    <Spinner
+                        android:id="@+id/id_merchant_location_province"
+                        style="@style/MySpinner"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center" />
+
+                    <Spinner
+                        android:id="@+id/id_merchant_location_city"
+                        style="@style/MySpinner"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1" />
+
+                    <Spinner
+                        android:id="@+id/id_merchant_location_district"
+                        style="@style/MySpinner"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp" >
+
+                    <TextView
+                        android:id="@+id/tx5"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:text="@string/text5"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/id_merchant_address"
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toRightOf="@+id/tx5"
+                        android:background="@drawable/pai_edit_03"
+                        android:hint="到地图定位更方便"
+                        
+                         >
+                    </EditText>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/id_merchant_shoppngmall_select"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp"
+                    android:orientation="vertical"
+                    android:visibility="gone" >
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp" >
+
+                        <TextView
+                            android:id="@+id/tx6"
+                            android:layout_width="70dp"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical"
+                            android:text="@string/text6"
+                            android:textSize="15sp" />
+
+                        <Spinner
+                            android:id="@+id/id_merchant_in_shopingmall"
+                            style="@style/MySpinner1"
+                            android:layout_width="100dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_toRightOf="@+id/tx6" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="7dp" >
+
+                        <TextView
+                            android:id="@+id/tx7"
+                            android:layout_width="70dp"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical"
+                            android:text="@string/text7"
+                            android:textSize="15sp" />
+
+                        <Spinner
+                            android:id="@+id/id_merchant_in_shoppingmall_floor"
+                            style="@style/MySpinner1"
+                            android:layout_width="100dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_toRightOf="@+id/tx7" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp" >
+
+                    <TextView
+                        android:id="@+id/tx8"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:text="@string/text8"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/id_merchant_phone"
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toRightOf="@+id/tx8"
+                        android:background="@drawable/pai_edit_03"
+                        android:inputType="phone"
+                        android:maxLength="11" >
+                    </EditText>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp" >
+
+                    <TextView
+                        android:id="@+id/tx9"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:text="@string/text9"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/id_merchant_businesshours"
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toRightOf="@+id/tx9"
+                        android:background="@drawable/pai_edit_03" >
+                    </EditText>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp" >
+
+                    <TextView
+                        android:id="@+id/tx10"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:text="@string/text10"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/id_merchant_busline"
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toRightOf="@+id/tx10"
+                        android:background="@drawable/pai_edit_03" >
+                    </EditText>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp" >
+
+                    <TextView
+                        android:id="@+id/tx11"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:text="商家网址"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/id_merchant_network_url"
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toRightOf="@+id/tx11"
+                        android:background="@drawable/pai_edit_03"
+                        android:inputType="textUri" >
+                    </EditText>
+                </RelativeLayout>
+            </LinearLayout>
+
+<!-- 发布商品页面 -->
+
+            <LinearLayout
+                android:id="@+id/l2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <RelativeLayout
+                    android:id="@+id/id_merchant_goods"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp"
+                    android:visibility="visible" >
+
+                    <TextView
+                        android:id="@+id/goods_tx3"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:text="类     型："
+                        android:textSize="15sp" />
+
+                    <RadioGroup
+                        android:id="@+id/id_merchant_goods_purpose"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/goods_tx3"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:id="@+id/id_merchant_googs_type_show"
+                            style="@style/MyCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="@string/merchant_googs_type_show_text" />
+
+                        <RadioButton
+                            android:id="@+id/id_merchant_googs_type_enquiry"
+                            style="@style/MyCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="@string/merchant_googs_type_enquiry_text" />
+
+                        <RadioButton
+                            android:id="@+id/id_merchant_googs_type_homedelivery"
+                            style="@style/MyCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="@string/merchant_googs_type_homedelivery_text" />
+                    </RadioGroup>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp" >
+
+                    <TextView
+                        android:id="@+id/goods_tx"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:text="商 品 名:"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/id_merchant_goods_name"
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/pai_edit_03" />
+
+                    <!--
+                         <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/bixu" />
+                    -->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="70dp"
+                            android:layout_height="30dp"
+                            android:gravity="center_vertical"
+                            android:text="现     价:"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/id_merchant_goods_current_price"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/pai_edit_03"
+                            android:inputType="number"
+                            android:singleLine="true" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="70dp"
+                            android:layout_height="30dp"
+                            android:gravity="center_vertical"
+                            android:text="原     价:"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/id_merchant_goods_original_price"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/pai_edit_03"
+                            android:inputType="number"
+                            android:singleLine="true" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/id_personal_contact"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp"
+                    android:visibility="gone" >
+
+                    <TextView
+                        android:id="@+id/goods_tx4"
+                        android:layout_width="80dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:text="联系方式："
+                        android:textSize="15sp" />
+
+                    <RadioGroup
+                        android:id="@+id/id_personal_goods_contact"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/goods_tx4"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:id="@+id/id_personal_goods_contact_qq"
+                            style="@style/MyCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/personal_goods_contact_qq_text" />
+
+                        <RadioButton
+                            android:id="@+id/id_personal_goods_contact_phone"
+                            style="@style/MyCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/personal_goods_contact_phone_text" />
+
+                        <RadioButton
+                            android:id="@+id/id_personal_goods_contact_mail"
+                            style="@style/MyCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/personal_goods_contact_mail_text" />
+
+                        <RadioButton
+                            android:id="@+id/id_personal_goods_contact_message"
+                            style="@style/MyCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/personal_goods_contact_message_text" />
+                    </RadioGroup>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:text="介     绍:"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/id_merchant_and_personal_goods_detail"
+                        android:layout_width="fill_parent"
+                        android:layout_height="60dp"
+                        android:background="@drawable/pai_edit_03"
+                        android:gravity="top"
+                        android:lines="4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/id_personal_address"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone" >
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:text="地     址:"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/id_personal_goods_address"
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/pai_edit_03" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/id_personal_address_have"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="87dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/order_pnone"
+                    android:padding="5dp"
+                    android:text="使用已有地址"
+                    android:textColor="@android:color/white"
+                    android:textSize="13dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/id_merchant_location_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:visibility="gone" >
+
+                <Button
+                    android:id="@+id/id_merchant_gpsmap"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/denglu_sure_bg"
+                    android:text="@string/merchant_gpsmap_text"
+                    android:textColor="@android:color/darker_gray" />
+
+                <Button
+                    android:id="@+id/id_merchant_lbs"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/denglu_sure_bg"
+                    android:text="@string/merchant_lbs_text"
+                    android:textColor="@android:color/darker_gray" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/id_merchant_save"
+                android:layout_width="280dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/denglu"
+                android:gravity="center"
+                android:text="@string/button_save_text"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

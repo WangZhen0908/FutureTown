@@ -1,0 +1,87 @@
+package com.vvage.futuretown.activity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+
+import com.vvage.futuretown.R;
+import com.vvage.futuretown.adapter.OrderAdapter1;
+import com.vvage.futuretown.adapter.OrderAdapter2;
+import com.vvage.futuretown.model.Order;
+
+public class WeiOrderActivity extends Activity implements OnClickListener{
+	private List<Order>data;
+	private BaseAdapter adapter,adapter2;
+	private ListView lv;
+	private Button wei,yi;
+	private LinearLayout l1,l2;
+	
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.myorder);
+		
+		lv=(ListView) findViewById(R.id.order_lv);
+		wei=(Button) findViewById(R.id.wei_order);
+		yi=(Button) findViewById(R.id.yi_order);
+		l1=(LinearLayout) findViewById(R.id.order_l1);
+		l2=(LinearLayout) findViewById(R.id.order_l2);
+		data=new ArrayList<Order>();
+		
+		data.add(new Order(R.drawable.ceshi_tu_01, "品名："+"糖果屋", "金额:￥"+"445"));
+		data.add(new Order(R.drawable.ceshi_tu_01, "品名："+"糖果屋", "金额:￥"+"445"));
+		data.add(new Order(R.drawable.ceshi_tu_01, "品名："+"糖果屋", "金额:￥"+"445"));
+		
+		
+		adapter=new OrderAdapter1(data, this);
+		adapter2=new OrderAdapter2(data, this);
+		lv.setAdapter(adapter);
+		
+		wei.setOnClickListener(this);
+		yi.setOnClickListener(this);
+		
+		
+	}
+
+
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+		if(v.getId()==R.id.wei_order){
+			lv.setAdapter(adapter);
+			wei.setBackgroundResource(R.drawable.press);
+			yi.setBackgroundResource(R.drawable.press_nor);
+			
+			l1.setVisibility(v.VISIBLE);
+			l2.setVisibility(v.GONE);
+			
+			
+		}if(v.getId()==R.id.yi_order){
+			lv.setAdapter(adapter2);
+			wei.setBackgroundResource(R.drawable.pai_shangpin_press_nor);
+			yi.setBackgroundResource(R.drawable.pai_shangjia_press);
+			l2.setVisibility(v.VISIBLE);
+			l1.setVisibility(v.GONE);
+		}
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+}

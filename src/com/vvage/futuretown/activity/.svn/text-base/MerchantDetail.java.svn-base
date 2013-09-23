@@ -1,0 +1,141 @@
+package com.vvage.futuretown.activity;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.GestureDetector.OnGestureListener;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
+
+import com.vvage.futuretown.Global;
+import com.vvage.futuretown.R;
+
+public class MerchantDetail extends Activity implements OnGestureListener {
+
+	private ViewFlipper mFlipper;
+	private GestureDetector mDetector;
+
+	private TextView mMerchantName;
+	private Button mWishlist;
+	private ImageView mDial;
+	private TextView mMerchantDetail;
+
+	// test data
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.merchantdetail);
+		mMerchantName = (TextView) findViewById(R.id.id_merchant_detail_textview);
+		mMerchantName.setText("大城小铺2012");
+		mMerchantDetail = (TextView) findViewById(R.id.id_merchant_detail_detail_text);
+		mMerchantDetail
+				.setText("本店产品均质量保证，我们不销售假货及劣质的商品，诚信经营。请放心购买！本店默认发中通和韵达快递，如需其他快递，联系客服，偏远地区需要补差价。由于拍摄环境光线问等因素，宝贝图片与实际宝贝产生一定色差。不可避免！如需退换货，请在七天内联系客服，质量问题本店承担来回运费。购物无忧");
+		mDetector = new GestureDetector(this);
+
+		mWishlist = (Button) findViewById(R.id.id_merchant_detail_wishlist_btn);
+		mWishlist.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(MerchantDetail.this, "调用收藏接口",
+						Toast.LENGTH_SHORT).show();
+				mWishlist.setBackgroundResource(R.drawable.wishlist);
+			}
+		});
+		
+		
+		mDial = (ImageView) findViewById(R.id.id_merchant_detail_dail_btn);
+		mDial.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Global.call(MerchantDetail.this, "010-xxxxxxxx");
+			}
+		});
+
+		mFlipper = (ViewFlipper) findViewById(R.id.id_merchant_detail_googs_photoshow_view);
+		mFlipper.addView(addImageView(R.drawable.ceshi_tu_01));
+		mFlipper.addView(addImageView(R.drawable.ceshi_tu_02));
+		mFlipper.addView(addImageView(R.drawable.ceshi_tu_01));
+		mFlipper.addView(addImageView(R.drawable.ceshi_tu_02));
+
+	}
+
+	private View addImageView(int id) {
+		ImageView iv = new ImageView(this);
+		iv.setImageResource(id);
+		return iv;
+	}
+
+	@Override
+	public boolean onDown(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+			float velocityY) {
+		// TODO Auto-generated method stub
+		if (e1.getX() - e2.getX() > 120) {
+			mFlipper.setInAnimation(AnimationUtils.loadAnimation(this,
+					R.anim.push_left_in));
+			mFlipper.setOutAnimation(AnimationUtils.loadAnimation(this,
+					R.anim.push_left_out));
+			mFlipper.showNext();
+			return true;
+		} else if (e1.getX() - e2.getX() < -120) {
+			mFlipper.setInAnimation(AnimationUtils.loadAnimation(this,
+					R.anim.push_right_in));
+			mFlipper.setOutAnimation(AnimationUtils.loadAnimation(this,
+					R.anim.push_right_out));
+			mFlipper.showPrevious();
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void onLongPress(MotionEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
+			float distanceY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void onShowPress(MotionEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean onSingleTapUp(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		// TODO Auto-generated method stub
+		return mDetector.onTouchEvent(event);
+	}
+}

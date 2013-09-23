@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+     >
+   
+    
+   <RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+
+    >
+    <ImageView
+        android:id="@+id/ux_lv_im"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        
+        android:scaleType="fitXY"
+        />
+
+<TextView 
+    android:id="@+id/ux_lv_goodsname"
+    android:layout_width="wrap_content"
+     android:layout_height="20dp"
+    android:layout_toRightOf="@id/ux_lv_im"
+	
+	android:layout_marginTop="10dp"
+		
+		
+    />
+
+<TextView 
+    android:id="@+id/ux_lv_price"
+    android:layout_width="fill_parent"
+    android:layout_height="20dp"
+    android:layout_toRightOf="@id/ux_lv_im"
+    android:layout_below="@id/ux_lv_goodsname"
+
+	android:layout_marginTop="10dp"
+    />
+
+<Button
+    android:id="@+id/ux_lv_btnshan"
+    android:layout_width="70dp"
+    android:layout_height="30dp"
+    android:layout_below="@id/ux_lv_price"
+    android:layout_marginTop="10dp"
+     android:layout_marginLeft="10dp"
+    android:layout_toRightOf="@id/ux_lv_im"
+    android:text="删除询价"
+    android:textSize="15dp"
+     android:textColor="@android:color/white"
+    android:background="@drawable/shanchu_goods"
+     />
+
+<Button
+    android:id="@+id/ux_lv_btnbian"
+    android:layout_width="70dp"
+    android:layout_height="30dp"
+      android:layout_marginTop="10dp"
+      android:layout_marginLeft="10dp"
+    android:layout_below="@id/ux_lv_price"
+    android:layout_toRightOf="@+id/ux_lv_btnshan"
+    android:background="@drawable/bianji_goods"
+    android:text="编辑询价"
+    android:textColor="@android:color/white"
+    android:textSize="15dp" />
+    
+</RelativeLayout>
+   
+    <EditText
+        android:id="@+id/ux_lv_fuyan"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/fuyan"
+                android:hint="附言：这件商品真真好呀，长方形浅底木条编制的粗篮" 
+                android:textSize="15dp"
+                android:gravity="top"
+                />
+    
+    
+</LinearLayout>

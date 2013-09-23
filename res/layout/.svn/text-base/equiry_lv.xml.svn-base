@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp" >
+
+        <ImageView
+            android:id="@+id/e_lv_im"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:background="@drawable/bg" />
+
+        <TextView
+            android:id="@+id/e_lv_name"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/e_lv_im" />
+
+        <TextView
+            android:id="@+id/e_lv_bianhao"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_below="@id/e_lv_name"
+            android:layout_toRightOf="@id/e_lv_im" />
+
+        <Button
+            android:id="@+id/order_lv_shangjia"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/e_lv_name"
+            android:background="@drawable/bianji_goods"
+            android:text="商家位置"
+            android:textColor="@android:color/white"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/e_lv_add"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/e_lv_bianhao"
+            android:layout_toRightOf="@id/e_lv_im"
+            android:text="dsfdsf" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp" >
+
+        <ImageView
+            android:id="@+id/e_lv_im1"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/e_lv_goodsname"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/e_lv_im1" />
+
+        <TextView
+            android:id="@+id/e_lv_price"
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"
+            android:layout_below="@id/e_lv_goodsname"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/e_lv_im1" />
+
+        <Button
+            android:id="@+id/e_lv_btnshan"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/e_lv_price"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/e_lv_im1"
+            android:background="@drawable/shanchu_goods"
+            android:text="删除询价"
+            android:textColor="@android:color/white"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/e_lv_btnbian"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/e_lv_price"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/e_lv_btnshan"
+            android:background="@drawable/order_pnone"
+            android:text="拔打号码"
+            android:textColor="@android:color/white"
+            android:textSize="15dp" />
+    </RelativeLayout>
+ 
+</LinearLayout>
